@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickUp
+  - PickUp GameOver
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 0;
 
+    public bool gameOver = false;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 8)
+        if ((count >= 9) && (gameOver == true))
         {
             winTextObject.SetActive(true);
             speed = 0;
@@ -57,6 +59,13 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count++;
+            SetCountText();
+        }
+        if (other.gameObject.CompareTag("PickUp GameOver"))
+        {
+            other.gameObject.SetActive(false);
+            count++;
+            gameOver = true;
             SetCountText();
         }
     }
